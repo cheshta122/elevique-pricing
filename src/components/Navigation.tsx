@@ -29,11 +29,13 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="hidden sm:inline-flex border-primary/20 text-primary hover:bg-primary/10">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="hidden sm:inline-flex border-primary/20 text-primary hover:bg-primary/10"
+              onClick={() => window.location.href = '/signin'}
+            >
               Sign In
-            </Button>
-            <Button variant="default" size="sm" className="bg-gradient-button hover:opacity-90 transition-opacity">
-              Get Started 🚀
             </Button>
           </div>
         </div>

@@ -8,66 +8,66 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cosmic Dark Theme */
-    --background: 230 35% 7%;
-    --foreground: 210 40% 98%;
+    /* Teal/Aqua Dark Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 230 35% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 230 35% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Neon Cyan Primary */
-    --primary: 180 100% 70%;
-    --primary-foreground: 230 35% 7%;
+    /* Aqua Primary */
+    --primary: 165 100% 62%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Glass Morphism Secondary */
-    --secondary: 240 100% 80%;
-    --secondary-foreground: 230 35% 7%;
+    /* Teal Secondary */
+    --secondary: 183 100% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 230 20% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 183 50% 10%;
+    --muted-foreground: 183 20% 70%;
 
-    /* Purple Accent */
-    --accent: 270 100% 80%;
-    --accent-foreground: 230 35% 7%;
+    /* Light Aqua Accent */
+    --accent: 165 89% 74%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 20%;
-    --input: 230 20% 15%;
-    --ring: 180 100% 70%;
+    --border: 183 50% 15%;
+    --input: 183 50% 15%;
+    --ring: 165 100% 62%;
 
     --radius: 0.75rem;
     
-    /* Custom Cosmic Colors */
-    --cosmic-purple: 270 100% 80%;
-    --cosmic-blue: 240 100% 80%;
-    --neon-cyan: 180 100% 70%;
-    --space-dark: 230 35% 7%;
-    --glass-bg: 230 35% 9%;
+    /* Teal/Aqua Theme Colors */
+    --teal: 183 100% 20%;
+    --aqua: 165 100% 62%;
+    --light-aqua: 165 89% 74%;
+    --space-dark: 0 0% 0%;
+    --glass-bg: 183 50% 5%;
     
     /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(270 100% 80% / 0.3), hsl(180 100% 70% / 0.3));
-    --gradient-hero: linear-gradient(135deg, hsl(230 35% 7%), hsl(270 100% 20%), hsl(180 100% 20%));
-    --gradient-card: linear-gradient(135deg, hsl(230 35% 9% / 0.7), hsl(270 100% 80% / 0.1));
-    --gradient-button: linear-gradient(135deg, hsl(180 100% 70%), hsl(270 100% 80%));
+    --gradient-cosmic: linear-gradient(135deg, hsl(183 100% 20% / 0.3), hsl(165 100% 62% / 0.3));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%), hsl(183 50% 5%), hsl(0 0% 0%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 0% / 0.7), hsl(165 100% 62% / 0.1));
+    --gradient-button: linear-gradient(135deg, hsl(165 100% 62%), hsl(165 89% 74%));
     
     /* Glass Effects */
-    --glass-border: hsl(210 40% 98% / 0.1);
-    --glass-bg-primary: hsl(230 35% 9% / 0.7);
-    --glass-bg-secondary: hsl(270 100% 80% / 0.05);
+    --glass-border: hsl(165 100% 62% / 0.1);
+    --glass-bg-primary: hsl(0 0% 0% / 0.7);
+    --glass-bg-secondary: hsl(165 100% 62% / 0.05);
     
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* Shadows */
-    --shadow-cosmic: 0 25px 50px -12px hsl(180 100% 70% / 0.25);
-    --shadow-purple: 0 25px 50px -12px hsl(270 100% 80% / 0.25);
-    --shadow-glow: 0 0 40px hsl(180 100% 70% / 0.3);
+    --shadow-cosmic: 0 25px 50px -12px hsl(165 100% 62% / 0.25);
+    --shadow-teal: 0 25px 50px -12px hsl(183 100% 20% / 0.25);
+    --shadow-glow: 0 0 40px hsl(165 100% 62% / 0.3);
 
     --sidebar-background: 0 0% 98%;
 
@@ -88,33 +88,33 @@ All colors MUST be HSL.
 
   .dark {
     /* Same as root since we're primarily dark themed */
-    --background: 230 35% 7%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 230 35% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 230 35% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 180 100% 70%;
-    --primary-foreground: 230 35% 7%;
+    --primary: 165 100% 62%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 240 100% 80%;
-    --secondary-foreground: 230 35% 7%;
+    --secondary: 183 100% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 230 20% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 183 50% 10%;
+    --muted-foreground: 183 20% 70%;
 
-    --accent: 270 100% 80%;
-    --accent-foreground: 230 35% 7%;
+    --accent: 165 89% 74%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 20%;
-    --input: 230 20% 15%;
-    --ring: 180 100% 70%;
+    --border: 183 50% 15%;
+    --input: 183 50% 15%;
+    --ring: 165 100% 62%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -145,7 +145,7 @@ All colors MUST be HSL.
   
   @keyframes glow {
     0%, 100% { box-shadow: var(--shadow-cosmic); }
-    50% { box-shadow: var(--shadow-purple); }
+    50% { box-shadow: var(--shadow-teal); }
   }
   
   @keyframes pulse-glow {

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Check, Star, Crown, Rocket } from "lucide-react";
+import PricingModal from './PricingModal';
 
 const PricingSection = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleExplore = (plan) => {
+    setSelectedPlan(plan);
+    setIsModalOpen(true);
+  };
   const plans = [
     {
       name: "Essential",
@@ -147,12 +155,19 @@ const PricingSection = () => {
                     : 'bg-muted/20 hover:bg-muted/30 text-foreground'
                 } transition-all duration-300`}
                 size="lg"
+                onClick={() => handleExplore(plan)}
               >
                 Explore
               </Button>
             </div>
           ))}
         </div>
+
+        <PricingModal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          plan={selectedPlan}
+        />
       </div>
     </section>
   );

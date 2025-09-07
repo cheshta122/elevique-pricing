@@ -52,6 +52,10 @@ export default {
         "neon-cyan": "hsl(var(--neon-cyan))",
         "space-dark": "hsl(var(--space-dark))",
         "glass-bg": "hsl(var(--glass-bg))",
+        // Teal/Aqua theme colors
+        teal: "hsl(var(--teal))",
+        aqua: "hsl(var(--aqua))",
+        "light-aqua": "hsl(var(--light-aqua))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -91,7 +95,7 @@ export default {
         },
         glow: {
           "0%, 100%": { boxShadow: "var(--shadow-cosmic)" },
-          "50%": { boxShadow: "var(--shadow-purple)" },
+          "50%": { boxShadow: "var(--shadow-teal)" },
         },
         "pulse-glow": {
           "0%, 100%": { opacity: "0.5" },

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import PortfolioSection from '@/components/PortfolioSection';
 import PricingSection from '@/components/PricingSection';
 import AIImagesSection from '@/components/AIImagesSection';
 import FAQSection from '@/components/FAQSection';
@@ -28,7 +29,12 @@ const Index = () => {
       {/* Main Content */}
       <main className="relative z-10">
         <HeroSection />
-        <PricingSection />
+        <div id="portfolio">
+          <PortfolioSection />
+        </div>
+        <div id="pricing">
+          <PricingSection />
+        </div>
         <AIImagesSection />
         <FAQSection />
         <ContactSection />
