@@ -1,192 +1,223 @@
-import React, { useState } from 'react';
-import Navigation from '@/components/Navigation';
-import { Button } from "@/components/ui/button";
-import { Play, Filter } from "lucide-react";
+"use client";
 
-const Portfolio = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Star, Zap, Sparkles, Bot, LucideIcon } from "lucide-react";
 
-  const categories = [
-    { id: 'all', name: 'All Works' },
-    { id: 'essential', name: 'Essential' },
-    { id: 'impact', name: 'Impact' },
-    { id: 'signature', name: 'Signature' }
+import VideoSection from "@/components/VideoSection";
+import ImageGallery from "@/components/ImageGallery";
+
+interface Video {
+  id: string;
+  title: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  icon: LucideIcon;
+  description: string;
+  ref: React.RefObject<HTMLDivElement>;
+  videos?: Video[];
+  images?: string[];
+}
+
+export default function Portfolio() {
+  const [activeSection, setActiveSection] = useState("essential");
+
+  const essentialRef = useRef<HTMLDivElement>(null);
+  const impactRef = useRef<HTMLDivElement>(null);
+  const signatureRef = useRef<HTMLDivElement>(null);
+  const aiRef = useRef<HTMLDivElement>(null);
+
+  const portfolioSections: Section[] = [
+    {
+      id: "essential",
+      title: "Essential",
+      icon: Star,
+      description: "Core solutions that form the foundation of digital excellence",
+      ref: essentialRef,
+      videos: [
+        { id: "video1", title: "Essential Video 1" },
+        { id: "video2", title: "Essential Video 2" },
+        { id: "video3", title: "Essential Video 3" },
+        { id: "video4", title: "Essential Video 4" },
+      ],
+    },
+    {
+      id: "impact",
+      title: "Impact",
+      icon: Zap,
+      description: "Revolutionary solutions that transform businesses completely",
+      ref: impactRef,
+      videos: [
+        { id: "video5", title: "Impact Video 1" },
+        { id: "video6", title: "Impact Video 2" },
+        { id: "video7", title: "Impact Video 3" },
+        { id: "video8", title: "Impact Video 4" },
+      ],
+    },
+    {
+      id: "signature",
+      title: "Signature",
+      icon: Sparkles,
+      description: "Premium experiences crafted with attention to every detail",
+      ref: signatureRef,
+      videos: [
+        { id: "video9", title: "Signature Video 1" },
+        { id: "video10", title: "Signature Video 2" },
+        { id: "video11", title: "Signature Video 3" },
+        { id: "video12", title: "Signature Video 4" },
+      ],
+    },
+    {
+      id: "ai-generated",
+      title: "AI Generated Images",
+      icon: Bot,
+      description: "Cutting-edge AI-powered visual content and automation",
+      ref: aiRef,
+      images: [
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1676299081847-824916de030a?w=500&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=500&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1676573409812-1596cfa3ab2f?w=500&h=400&fit=crop",
+      ],
+    },
   ];
 
-  const portfolioItems = [
-    {
-      id: 1,
-      category: 'essential',
-      type: 'video',
-      title: 'Rapid AI Ad - Tech Startup',
-      duration: '0:25',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 2,
-      category: 'essential',
-      type: 'video',
-      title: 'Product Launch Video',
-      duration: '0:22',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 3,
-      category: 'impact',
-      type: 'video',
-      title: 'Brand Story - Fashion',
-      duration: '0:40',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 4,
-      category: 'impact',
-      type: 'video',
-      title: 'Premium Product Integration',
-      duration: '0:38',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 5,
-      category: 'signature',
-      type: 'video',
-      title: 'Luxury Brand Film',
-      duration: '0:60',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 6,
-      category: 'signature',
-      type: 'video',
-      title: 'Cinematic Brand Story',
-      duration: '0:55',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 7,
-      category: 'essential',
-      type: 'image',
-      title: 'AI Generated Brand Asset',
-      thumbnail: '/placeholder.svg'
-    },
-    {
-      id: 8,
-      category: 'impact',
-      type: 'image',
-      title: 'Premium Visual Campaign',
-      thumbnail: '/placeholder.svg'
-    }
-  ];
-
-  const filteredItems = activeCategory === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div className="min-h-screen relative">
-      {/* Fixed Background */}
-      <div className="fixed inset-0 bg-gradient-hero bg-fixed -z-10"></div>
-      
-      {/* Animated Background Particles */}
-      <div className="fixed inset-0 overflow-hidden -z-10">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-pulse-glow opacity-60"></div>
-        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-accent rounded-full animate-pulse opacity-40" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-secondary rounded-full animate-pulse-glow opacity-50" style={{ animationDelay: '2s' }}></div>
+    <div className="min-h-screen relative overflow-hidden bg-[#001a1a] font-sans">
+      {/* Fixed Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <img
+          src="/background.jpeg"
+          alt="Background"
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#006472]/60 via-black/70 to-[#39ffd5]/40 animate-gradient-move" />
       </div>
 
-      <Navigation />
+      {/* Floating Shapes */}
+      <div className="fixed inset-0 z-10 pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-20 w-72 h-72 bg-[#39ffd5]/20 rounded-full blur-3xl"
+          animate={{ x: [0, 25, -25, 0], y: [0, -15, 15, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-[#90fbe4]/20 rounded-full blur-3xl"
+          animate={{ x: [0, -30, 30, 0], y: [0, 20, -20, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
-      <main className="relative z-10 pt-24">
-        {/* Hero Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Our Creative
+      {/* Section Badges */}
+      <div className="relative z-20 text-center py-6">
+        {portfolioSections.map((section) => (
+          <Badge
+            key={section.id}
+            className={`px-6 py-2 text-sm font-medium cursor-pointer m-2 transition-all duration-300 transform hover:scale-105 ${
+              activeSection === section.id
+                ? "bg-gradient-to-r from-[#006472] to-[#39ffd5] text-white shadow-lg"
+                : "bg-white/20 backdrop-blur-md text-[#90fbe4] hover:bg-white/30"
+            }`}
+            onClick={() => {
+              setActiveSection(section.id);
+              scrollToSection(section.ref);
+            }}
+          >
+            <section.icon className="w-4 h-4 mr-2" />
+            {section.title}
+          </Badge>
+        ))}
+      </div>
+
+      {/* Central Sections */}
+      <section className="py-10 px-6 max-w-6xl mx-auto grid gap-10 relative z-20">
+        {portfolioSections.map((section, i) => (
+          <motion.div
+            key={section.id}
+            ref={section.ref}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: i * 0.2 }}
+            viewport={{ once: true }}
+          >
+            {/* Fancy Heading */}
+            <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+              <span className="bg-gradient-to-r from-[#39ffd5] via-[#90fbe4] to-white bg-clip-text text-transparent animate-gradient-x">
+                {section.title}
               </span>
-              <br />
-              <span className="text-foreground">Portfolio</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12">
-              Explore our diverse collection of AI-powered brand transformations across Essential, Impact, and Signature categories
+            </h2>
+
+            {/* Description */}
+            <p className="text-center text-[#90fbe4] max-w-2xl mx-auto mb-4 font-medium tracking-wide text-lg">
+              {section.description}
             </p>
-          </div>
-        </section>
 
-        {/* Filter Tabs */}
-        <section className="px-6 mb-12">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={activeCategory === category.id ? "default" : "outline"}
-                  className={`${
-                    activeCategory === category.id 
-                      ? 'bg-gradient-button' 
-                      : 'border-primary/20 text-primary hover:bg-primary/10'
-                  }`}
-                  onClick={() => setActiveCategory(category.id)}
-                >
-                  <Filter className="w-4 h-4 mr-2" />
-                  {category.name}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </section>
+            {/* Content */}
+            {section.videos && <VideoSection videos={section.videos} />}
+            {section.images && <ImageGallery images={section.images} />}
 
-        {/* Portfolio Grid */}
-        <section className="px-6 pb-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="glass-card rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="relative aspect-video bg-muted/20">
-                    <img 
-                      src={item.thumbnail} 
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {item.type === 'video' && (
-                      <>
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <Play className="w-8 h-8 text-primary ml-1" />
-                          </div>
-                        </div>
-                        <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-sm text-white">
-                          {item.duration}
-                        </div>
-                      </>
-                    )}
-                    <div className="absolute top-3 left-3">
-                      <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        item.category === 'essential' ? 'bg-secondary/80 text-secondary-foreground' :
-                        item.category === 'impact' ? 'bg-primary/80 text-primary-foreground' :
-                        'bg-accent/80 text-accent-foreground'
-                      }`}>
-                        {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-              ))}
+            {/* Pricing Button */}
+            <div className="mt-4 text-center">
+              <button
+                className="px-8 py-3 rounded-lg bg-[#006472] text-white hover:bg-[#39ffd5] transition-all shadow-lg hover:shadow-[#39ffd5]/40 font-semibold"
+                onClick={() => {
+                  const pricingSection = document.getElementById("pricing");
+                  if (pricingSection) {
+                    pricingSection.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    window.location.href = "/#pricing";
+                  }
+                }}
+              >
+                Pricing
+              </button>
             </div>
-          </div>
-        </section>
-      </main>
+          </motion.div>
+        ))}
+      </section>
+
+      {/* Floating Bot */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-30"
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <button
+          className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-[#006472] to-[#39ffd5] shadow-2xl hover:shadow-[#90fbe4]/50 transition-all duration-300 transform hover:scale-110"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <Bot className="w-6 h-6" />
+        </button>
+      </motion.div>
+
+      {/* Gradient Animation */}
+      <style>{`
+        @keyframes gradient-move {
+          0%, 100% { background-position: left center; }
+          50% { background-position: right center; }
+        }
+        .animate-gradient-move {
+          background-size: 200% 200%;
+          animation: gradient-move 12s ease infinite;
+        }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          animation: gradient-x 6s ease infinite;
+        }
+      `}</style>
     </div>
   );
-};
-
-export default Portfolio;
+}

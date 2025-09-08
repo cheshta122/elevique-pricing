@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import PricingSection from '@/components/PricingSection';
-import AIImagesSection from '@/components/AIImagesSection';
+import AIImagesSection from "@/components/AIImagesSection"
 import FAQSection from '@/components/FAQSection';
 import ContactSection from '@/components/ContactSection';
 
