@@ -5,8 +5,21 @@ import hero1Image from "@/assets/image1.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
       
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/videobg.m4v"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
+
+      {/* Video Overlay to lighten the background */}
+      <div className="absolute inset-0 bg-black/30"></div>
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-teal/20 animate-float blur-xl"></div>
@@ -20,17 +33,16 @@ const HeroSection = () => {
 
           {/* Left Side - Content */}
           <div>
-            {/* Hero Heading */}
             <div className="mb-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent relative">
-                  Transform Your Brand
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent relative">                  <br></br>
+                  Transform Your 
                   <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full animate-pulse-glow opacity-60"></div>
                   <div className="absolute top-1/2 -left-4 w-2 h-2 bg-accent rounded-full animate-float opacity-80" style={{ animationDelay: '1s' }}></div>
                 </span>
                 <br />
                 <span className="text-foreground relative">
-                  with AI Powered Visuals Creation
+                  Brand with AI Powered Visuals Creation
                   <div className="absolute -bottom-2 left-1/4 w-3 h-3 bg-secondary rounded-full animate-pulse opacity-50" style={{ animationDelay: '0.5s' }}></div>
                   <div className="absolute top-0 right-1/3 w-1.5 h-1.5 bg-primary rounded-full animate-float opacity-70" style={{ animationDelay: '2s' }}></div>
                 </span>
@@ -41,7 +53,6 @@ const HeroSection = () => {
               </p>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-16">
               <Button 
                 size="lg" 
@@ -64,7 +75,7 @@ const HeroSection = () => {
                 className="bg-accent/20 text-accent hover:bg-accent/30 backdrop-blur-sm px-8 py-6 text-lg"
                 onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}
               >
-                Get Started 🚀
+                Get Started 
               </Button>
             </div>
           </div>
@@ -84,7 +95,6 @@ const HeroSection = () => {
               />
             </div>
 
-            {/* Gradient overlay */}
             <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/60 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
             
             <div className="absolute bottom-6 left-6 right-6 z-30 text-center">
@@ -92,7 +102,6 @@ const HeroSection = () => {
               <p className="text-sm text-white/80">Get your first AI video in 3-14 days</p>
             </div>
 
-            {/* Floating elements */}
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow opacity-80"></div>
             <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-accent rounded-full animate-float opacity-60" style={{ animationDelay: '1.5s' }}></div>
             <div className="absolute top-1/3 -left-8 w-4 h-4 bg-secondary rounded-full animate-pulse opacity-70" style={{ animationDelay: '0.8s' }}></div>

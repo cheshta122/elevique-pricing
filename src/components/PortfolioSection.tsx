@@ -8,6 +8,7 @@ interface PortfolioItem {
   type: 'video' | 'image';
   title: string;
   thumbnail: string;
+  videoSrc?: string;
   duration?: string;
 }
 
@@ -21,36 +22,33 @@ interface Section {
 
 interface PortfolioSectionProps {
   section?: Section;
-  showTitle?: boolean; // ✅ new prop
+  showTitle?: boolean;
 }
 
 const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle = true }) => {
   const portfolioItems: PortfolioItem[] = [
-    { type: 'video', title: `AI Brand Video - ${section?.title}`, thumbnail: '/placeholder.svg', duration: '0:25' },
-    { type: 'video', title: `Product Integration - ${section?.title}`, thumbnail: '/placeholder.svg', duration: '0:40' },
-    { type: 'image', title: `${section?.title} Campaign Visual`, thumbnail: '/placeholder.svg' },
-    { type: 'image', title: `Premium ${section?.title} Asset`, thumbnail: '/placeholder.svg' },
+    { type: 'video', title: `AI Brand Video - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: '/sample1.mp4', duration: '0:25' },
+    { type: 'video', title: `Product Integration - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: '/sample2.mp4', duration: '0:40' },
+    { type: 'video', title: `${section?.title} Campaign Visual`, thumbnail: '/placeholder.svg', videoSrc: '/sample3.mp4' },
+    { type: 'video', title: `Premium ${section?.title} Asset`, thumbnail: '/placeholder.svg', videoSrc: '/sample4.mp4' },
   ];
 
   return (
     <section className="py-20 px-6 relative overflow-hidden">
-      {/* ✅ Full Background Image with subtle motion */}
-      <motion.div
+      {/* ✅ Background Video instead of Image */}
+      <motion.video
+        autoPlay
+        loop
+        muted
+        playsInline
         initial={{ scale: 1 }}
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url('/bg1.png')`, // 👈 bg1.png from public folder
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: 0.2, // thoda transparent taaki content clearly dikhe
-        }}
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-20"
+        src="/background-video.mp4" // ✅ Your video file placed in the public folder
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* ✅ Animated Section Title */}
         {showTitle && (
           <motion.div
             initial={{ opacity: 0, y: -40 }}
@@ -62,10 +60,10 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
             <motion.h2
               animate={{ 
                 textShadow: [
-                  "0 0 12px rgba(0,100,114,0.7)",   // Dark Teal
-                  "0 0 18px rgba(57,255,213,0.7)",  // Bright Cyan
-                  "0 0 14px rgba(144,251,228,0.7)", // Light Aqua
-                  "0 0 16px rgba(255,255,255,0.7)", // White
+                  "0 0 12px rgba(0,100,114,0.7)",
+                  "0 0 18px rgba(57,255,213,0.7)",
+                  "0 0 14px rgba(144,251,228,0.7)",
+                  "0 0 16px rgba(255,255,255,0.7)",
                 ], 
               }}
               transition={{ duration: 4, repeat: Infinity, repeatType: "mirror" }}
@@ -73,10 +71,9 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
                          bg-gradient-to-r from-[#006472] via-[#39ffd5] to-[#90fbe4] 
                          bg-clip-text text-transparent"
             >
-               Where Ideas Meet Innovation
+              Where Ideas Meet Innovation
             </motion.h2>
 
-            {/* Underline Animation */}
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "140px" }}
@@ -92,7 +89,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
           </motion.div>
         )}
 
-        {/* Portfolio Items */}
+        {/* ✅ Portfolio Items with Video */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {portfolioItems.map((item, index) => (
             <div
@@ -100,7 +97,19 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
               className="glass-card rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <div className="relative aspect-video bg-muted/20">
-                <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
+                {item.type === 'video' && item.videoSrc ? (
+                  <video
+                    src={item.videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
+                )}
+
                 {item.type === 'video' && (
                   <>
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
@@ -109,9 +118,11 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
                         <Play className="w-8 h-8 text-[#006472] ml-1" />
                       </div>
                     </div>
-                    <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-sm text-white">
-                      {item.duration}
-                    </div>
+                    {item.duration && (
+                      <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-sm text-white">
+                        {item.duration}
+                      </div>
+                    )}
                   </>
                 )}
               </div>
@@ -124,7 +135,6 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
           ))}
         </div>
 
-        {/* ✅ View Full Portfolio Button */}
         <div className="text-center">
           <Link to="/portfolio">
             <Button size="lg" className="bg-gradient-to-r from-[#006472] via-[#39ffd5] to-[#90fbe4] text-white hover:opacity-90 transition-all duration-300 transform hover:scale-105">
@@ -139,3 +149,4 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
 };
 
 export default PortfolioSection;
+

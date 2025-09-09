@@ -11,6 +11,7 @@ const PricingSection = () => {
     setSelectedPlan(plan);
     setIsModalOpen(true);
   };
+
   const plans = [
     {
       name: "Essential",
@@ -61,7 +62,7 @@ const PricingSection = () => {
     {
       name: "Signature",
       subtitle: "Flagship luxury brand film — full cinematic",
-      duration: "30–60 sec",
+      duration: "30-60 sec",
       price: "₹30,000",
       icon: <Crown className="w-6 h-6" />,
       popular: false,
@@ -74,7 +75,7 @@ const PricingSection = () => {
         "Campaign brand kit",
         "3 Free revisions",
         "Complex, dynamic camera moves",
-        "3–5 custom HD/3D images",
+        "3-5 custom HD/3D images",
         "Dedicated project manager & oversight"
       ],
       packages: [
@@ -85,8 +86,22 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="pricing" className="relative py-20 px-6 overflow-hidden">
+      
+      {/* ✅ Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/background-video1.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
+
+      {/* ✅ Overlay to darken video slightly */}
+      <div className="absolute inset-0 bg-black/20"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -99,10 +114,10 @@ const PricingSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`glass-card rounded-3xl p-8 relative group hover:scale-105 transition-all duration-300 ${
+              className={`glass-card rounded-3xl p-8 relative group hover:scale-105 transition-all duration-300 flex flex-col ${
                 plan.popular ? 'ring-2 ring-primary/50 animate-glow' : ''
               }`}
             >
@@ -148,12 +163,10 @@ const PricingSection = () => {
                 ))}
               </div>
 
+              <div className="flex-grow"></div>
+
               <Button 
-                className={`w-full ${
-                  plan.popular 
-                    ? 'bg-gradient-button hover:opacity-90' 
-                    : 'bg-muted/20 hover:bg-muted/30 text-foreground'
-                } transition-all duration-300`}
+                className="w-full bg-gradient-button hover:opacity-90 transition-all duration-300 mt-auto"
                 size="lg"
                 onClick={() => handleExplore(plan)}
               >

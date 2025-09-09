@@ -3,12 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageCircle, Phone, Instagram, Facebook } from "lucide-react";
+import { Mail, MessageCircle, Phone, Instagram, Facebook, ArrowUp } from "lucide-react";
 
 const ContactSection = () => {
+  // Function to scroll to top
+  const scrollToTop = () => {
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="relative py-20 px-6 overflow-hidden">
+      {/* Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+        src="/background-video.mp4"  // Path to your video in public folder
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      <div className="relative max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -22,7 +40,7 @@ const ContactSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="glass-card rounded-3xl p-8">
+          <div className="glass-card rounded-3xl p-8 bg-white/10 backdrop-blur-md border border-white/10">
             <h3 className="text-2xl font-bold mb-6 text-foreground">Send us a message</h3>
             <p className="text-muted-foreground mb-8">
               Fill out the form below and we'll get back to you within 24 hours.
@@ -71,7 +89,7 @@ const ContactSection = () => {
 
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="glass-card rounded-3xl p-8">
+            <div className="glass-card rounded-3xl p-8 bg-white/10 backdrop-blur-md border border-white/10">
               <h3 className="text-2xl font-bold mb-6 text-foreground">Connect with us</h3>
               <p className="text-muted-foreground mb-8">
                 Follow us on social media for the latest updates, behind-the-scenes content, and examples of our AI video creations.
@@ -115,7 +133,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="glass-card rounded-3xl p-8 text-center">
+            <div className="glass-card rounded-3xl p-8 bg-white/10 backdrop-blur-md border border-white/10 text-center">
               <h4 className="text-xl font-bold mb-4 text-foreground">Quick Response</h4>
               <p className="text-muted-foreground mb-6">
                 Need immediate assistance? WhatsApp us for the fastest response!
@@ -136,6 +154,17 @@ const ContactSection = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Back to Top Button */}
+        <div className="flex justify-center mt-12">
+          <Button
+            className="bg-gradient-button hover:opacity-90 transition-all duration-300 flex items-center space-x-2"
+            onClick={scrollToTop}
+          >
+            <ArrowUp className="w-5 h-5" />
+            <span>Back to Top</span>
+          </Button>
         </div>
       </div>
     </section>

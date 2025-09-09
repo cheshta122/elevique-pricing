@@ -1,149 +1,95 @@
-"use client"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { ImageIcon } from "lucide-react"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { ImageIcon } from "lucide-react";
 
 const imagePackages = [
   { count: 5, defaultPrice: 3750, customPrice: 6000 },
   { count: 10, defaultPrice: 7000, customPrice: 10000 },
   { count: 15, defaultPrice: 9000, customPrice: 13500 },
   { count: 20, defaultPrice: 10000, customPrice: 16000 },
-]
-
-const whatsappLink =
-  "https://api.whatsapp.com/send/?phone=917217832613&text=I'm%20interested%20in%20your%20AI%20Images%20packages&type=phone_number&app_absent=0"
+];
 
 export default function AIImagesSection() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-
   return (
-    <section id="ai-images" className="relative overflow-hidden min-h-screen flex items-stretch">
+    <section id="ai-images" className="relative py-20 px-6 overflow-hidden">
       
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="h-full w-full bg-[linear-gradient(rgba(57,255,213,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,213,0.1)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      </div>
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/background-video1.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      ></video>
 
-      <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col md:flex-row items-stretch">
+      {/* Overlay to darken video slightly */}
+      <div className="absolute inset-0 bg-black/20"></div>
 
-        {/* Left Side - Image only */}
-        <div className="relative w-1/2 hidden md:block">
-          <motion.img
-            src="/image1.png"
-            alt="Background Image 1"
-            initial={{ y: 0 }}
-            animate={{ y: [0, 40, 0] }}   // Increased movement for more noticeable animation
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-100px] left-0 w-full h-[calc(100%+200px)] object-cover opacity-40 pointer-events-none" // Darker opacity
-          />
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              eleVique — AI Images Packages
+            </span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Professional AI-generated images for your brand with cutting-edge technology.
+          </p>
         </div>
 
-        {/* Right Side - Pricing and content */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center px-6 relative overflow-hidden">
-          
-          {/* Text Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-left mb-12 relative z-10"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 font-sans">
-              AI IMAGES
-              <span className="block text-[#39ffd5] mt-2">PACKAGES</span>
-            </h2>
-            <p className="text-gray-300 text-lg max-w-lg">
-              Professional AI-generated images for your brand with cutting-edge technology
-            </p>
-          </motion.div>
+        <div className="grid lg:grid-cols-4 gap-8">
+          {imagePackages.map((pkg, index) => {
+            // WhatsApp link for this package
+            const whatsappLink = `https://api.whatsapp.com/send/?phone=917217832613&text=I'm%20interested%20in%20the%20${pkg.count}%20AI%20images%20package&type=phone_number&app_absent=0`;
 
-          {/* Pricing Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl relative z-10">
-            {imagePackages.map((pkg, index) => (
-              <motion.div
+            return (
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredCard(index)}
-                onHoverEnd={() => setHoveredCard(null)}
-                className="relative"
+                className="glass-card rounded-3xl p-8 relative group hover:scale-105 transition-all duration-300 flex flex-col"
               >
-                <Card className="relative bg-black/60 border-[#39ffd5]/20 backdrop-blur-sm overflow-hidden group">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-[#39ffd5]/20 via-transparent to-[#39ffd5]/20 opacity-0 group-hover:opacity-100"
-                    animate={{
-                      background:
-                        hoveredCard === index
-                          ? "linear-gradient(45deg, rgba(57,255,213,0.2), rgba(57,255,213,0.1), rgba(57,255,213,0.2))"
-                          : "linear-gradient(45deg, transparent, transparent, transparent)",
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[#39ffd5]/20 to-[#90fbe4]/20 flex items-center justify-center">
+                    <ImageIcon className="w-8 h-8 text-[#39ffd5]" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2 text-foreground">Image Package</h3>
+                  <p className="text-muted-foreground text-sm mb-2">{pkg.count} AI images</p>
+                </div>
 
-                  <CardContent className="p-6 relative z-10">
-                    <div className="text-center mb-6">
-                      <motion.div
-                        animate={{ scale: hoveredCard === index ? 1.1 : 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[#39ffd5]/20 to-[#90fbe4]/20 flex items-center justify-center group-hover:animate-pulse"
-                      >
-                        <ImageIcon className="w-8 h-8 text-[#39ffd5]" />
-                      </motion.div>
-                      <motion.div
-                        animate={{ scale: hoveredCard === index ? 1.1 : 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-4xl font-bold text-[#39ffd5] mb-2"
-                      >
-                        {pkg.count}
-                      </motion.div>
-                      <p className="text-white text-sm uppercase tracking-wider">Images</p>
-                    </div>
+                <div className="space-y-4 mb-8">
+                  <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
+                    <p className="text-gray-300 text-sm mb-1">Default Templates</p>
+                    <p className="text-white text-xl font-bold">₹ {pkg.defaultPrice.toLocaleString()}</p>
+                  </div>
 
-                    <div className="space-y-4 mb-6">
-                      <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
-                        <p className="text-gray-300 text-sm mb-1">Default Templates</p>
-                        <p className="text-white text-xl font-bold">
-                          ₹ {pkg.defaultPrice.toLocaleString()}
-                        </p>
-                      </div>
+                  <div className="bg-gray-900/50 rounded-lg p-4 border border-[#39ffd5]/30">
+                    <p className="text-gray-300 text-sm mb-1">Custom Concepts</p>
+                    <p className="text-[#39ffd5] text-xl font-bold">₹ {pkg.customPrice.toLocaleString()}</p>
+                  </div>
+                </div>
 
-                      <div className="bg-gray-900/50 rounded-lg p-4 border border-[#39ffd5]/30">
-                        <p className="text-gray-300 text-sm mb-1">Custom Concepts</p>
-                        <p className="text-[#39ffd5] text-xl font-bold">
-                          ₹ {pkg.customPrice.toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
+                <div className="flex-grow"></div>
 
-                    <a
-                      href={whatsappLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full"
-                    >
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-full bg-gradient-to-r from-[#39ffd5] to-[#90fbe4] text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#39ffd5]/25 hover:from-[#90fbe4] hover:to-[#39ffd5]"
-                      >
-                        Buy Now
-                      </motion.button>
-                    </a>
-                  </CardContent>
-
-                  <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-[#39ffd5] opacity-50" />
-                  <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-[#39ffd5] opacity-50" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-[#39ffd5] opacity-50" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-[#39ffd5] opacity-50" />
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                {/* ✅ Fixed WhatsApp Button */}
+                <Button
+                  asChild
+                  className="w-full bg-gradient-button hover:opacity-90 transition-all duration-300 mt-auto"
+                  size="lg"
+                >
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full block text-center"
+                  >
+                    Explore
+                  </a>
+                </Button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
-  )
+  );
 }

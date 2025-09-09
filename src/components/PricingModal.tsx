@@ -29,6 +29,16 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
       title: `${plan.name} Package - Sample 2`, 
       thumbnail: '/placeholder.svg',
       duration: plan.name === 'Essential' ? '0:20' : plan.name === 'Impact' ? '0:35' : '0:45'
+    },
+    {
+      title: `${plan.name} Package - Sample 3`,
+      thumbnail: '/placeholder.svg',
+      duration: plan.name === 'Essential' ? '0:30' : plan.name === 'Impact' ? '0:45' : '0:50'
+    },
+    {
+      title: `${plan.name} Package - Sample 4`,
+      thumbnail: '/placeholder.svg',
+      duration: plan.name === 'Essential' ? '0:28' : plan.name === 'Impact' ? '0:38' : '0:55'
     }
   ];
 
@@ -74,7 +84,9 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
           {/* Portfolio Videos */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Sample Works - {plan.name}</h4>
-            <div className="space-y-4 mb-6">
+            
+            {/* 2 videos per row */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
               {portfolioVideos.map((video, index) => (
                 <div
                   key={index}
@@ -88,16 +100,16 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-6 h-6 text-primary ml-1" />
+                      <div className="w-10 h-10 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Play className="w-4 h-4 text-primary ml-1" />
                       </div>
                     </div>
-                    <div className="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-xs text-white">
+                    <div className="absolute bottom-1 right-1 bg-black/60 px-1 py-0.5 rounded text-xs text-white">
                       {video.duration}
                     </div>
                   </div>
-                  <div className="p-3">
-                    <h5 className="text-sm font-medium text-foreground">{video.title}</h5>
+                  <div className="p-2">
+                    <h5 className="text-xs font-medium text-foreground">{video.title}</h5>
                   </div>
                 </div>
               ))}

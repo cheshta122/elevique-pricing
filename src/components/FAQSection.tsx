@@ -36,8 +36,19 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="relative py-20 px-6 overflow-hidden">
+      
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
+        src="/background-video1.mp4"   // Replace with your video file path
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-cosmic flex items-center justify-center animate-float">
             <HelpCircle className="w-10 h-10 text-accent" />
@@ -54,13 +65,13 @@ const FAQSection = () => {
           </p>
         </div>
 
-        <div className="glass-card rounded-3xl p-8">
+        <div className="glass-card rounded-3xl p-8 bg-black/60 backdrop-blur-md">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-white/10 rounded-xl px-6 glass-morphism"
+                className="border border-white/10 rounded-xl px-6 glass-morphism bg-black/50"
               >
                 <AccordionTrigger className="text-left hover:text-primary transition-colors duration-300 text-lg font-medium py-6">
                   {faq.question}

@@ -3,9 +3,8 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Star, Zap, Sparkles, Bot, LucideIcon } from "lucide-react";
+import { Star, Zap, Sparkles, Bot, LucideIcon, PlayCircle } from "lucide-react";
 
-import VideoSection from "@/components/VideoSection";
 import ImageGallery from "@/components/ImageGallery";
 
 interface Video {
@@ -25,6 +24,7 @@ interface Section {
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("essential");
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const essentialRef = useRef<HTMLDivElement>(null);
   const impactRef = useRef<HTMLDivElement>(null);
@@ -160,8 +160,38 @@ export default function Portfolio() {
               {section.description}
             </p>
 
-            {/* Content */}
-            {section.videos && <VideoSection videos={section.videos} />}
+            {/* Content: Videos with horizontal scroll or images */}
+            {section.videos && (
+              <div className="relative z-10 py-4 overflow-x-auto overflow-y-hidden scrollbar-custom">
+                <div className="flex gap-6 whitespace-nowrap px-2">
+                  {section.videos.map((video, index) => (
+                    <motion.div
+                      key={video.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      onHoverStart={() => setHoveredCard(index)}
+                      onHoverEnd={() => setHoveredCard(null)}
+                      className="inline-block min-w-[250px]"
+                    >
+                      <div className="relative bg-black/60 border-[#39ffd5]/20 backdrop-blur-sm overflow-hidden group rounded-lg p-4">
+                        <motion.div
+                          animate={{ scale: hoveredCard === index ? 1.05 : 1 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex flex-col items-center justify-center h-full space-y-4"
+                        >
+                          <PlayCircle className="w-12 h-12 text-[#39ffd5]" />
+                          <h3 className="text-white text-lg font-semibold text-center">
+                            {video.title}
+                          </h3>
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {section.images && <ImageGallery images={section.images} />}
 
             {/* Pricing Button */}
@@ -199,7 +229,7 @@ export default function Portfolio() {
         </button>
       </motion.div>
 
-      {/* Gradient Animation */}
+      {/* Gradient Animations and Scrollbar Customization */}
       <style>{`
         @keyframes gradient-move {
           0%, 100% { background-position: left center; }
@@ -216,6 +246,20 @@ export default function Portfolio() {
         .animate-gradient-x {
           background-size: 200% 200%;
           animation: gradient-x 6s ease infinite;
+        }
+        .scrollbar-custom::-webkit-scrollbar {
+          height: 8px;
+        }
+        .scrollbar-custom::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+          background-color: #006472;
+          border-radius: 4px;
+        }
+        .scrollbar-custom {
+          scrollbar-color: #006472 transparent;
+          scrollbar-width: thin;
         }
       `}</style>
     </div>
