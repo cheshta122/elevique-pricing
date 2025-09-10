@@ -10,6 +10,7 @@ import ImageGallery from "@/components/ImageGallery";
 interface Video {
   id: string;
   title: string;
+  url: string;
 }
 
 interface Section {
@@ -39,10 +40,10 @@ export default function Portfolio() {
       description: "Core solutions that form the foundation of digital excellence",
       ref: essentialRef,
       videos: [
-        { id: "video1", title: "Essential Video 1" },
-        { id: "video2", title: "Essential Video 2" },
-        { id: "video3", title: "Essential Video 3" },
-        { id: "video4", title: "Essential Video 4" },
+        { id: "video1", title: "Essential Video 1", url: "https://youtu.be/QTcSLYvHHFc?si=LE2IYqKBo3VQDu5L" },
+        { id: "video2", title: "Essential Video 2", url: "https://youtu.be/e5p44ED1UpM?si=hRgpAmpWQpHq4t4K" },
+        { id: "video3", title: "Essential Video 3", url: "https://youtu.be/n-gsp7mfDoo?si=P99Uu04GJ9AwRRzh" },
+        { id: "video4", title: "Essential Video 4", url: "https://youtu.be/O9Q06AIOrfQ?si=4whzvHNIXvkGU9N_" },
       ],
     },
     {
@@ -52,10 +53,10 @@ export default function Portfolio() {
       description: "Revolutionary solutions that transform businesses completely",
       ref: impactRef,
       videos: [
-        { id: "video5", title: "Impact Video 1" },
-        { id: "video6", title: "Impact Video 2" },
-        { id: "video7", title: "Impact Video 3" },
-        { id: "video8", title: "Impact Video 4" },
+        { id: "video5", title: "Impact Video 1", url: "https://youtu.be/qwIQ0fdW8Dc?si=_Y5IB1K2s80EAYP7" },
+        { id: "video6", title: "Impact Video 2", url: "https://youtu.be/cRaZvU_zBEs?si=xh5TLqyYGeUcRnB5" },
+        { id: "video7", title: "Impact Video 3", url: "https://youtu.be/Rc-6Mr_cXLU?si=l1mHCuugCJLqJw4_" },
+        { id: "video8", title: "Impact Video 4", url: "https://youtu.be/9lZgKxmObUg?si=j0up1BlGRh7IBJqd" },
       ],
     },
     {
@@ -65,10 +66,10 @@ export default function Portfolio() {
       description: "Premium experiences crafted with attention to every detail",
       ref: signatureRef,
       videos: [
-        { id: "video9", title: "Signature Video 1" },
-        { id: "video10", title: "Signature Video 2" },
-        { id: "video11", title: "Signature Video 3" },
-        { id: "video12", title: "Signature Video 4" },
+        { id: "video9", title: "Signature Video 1", url: "https://youtu.be/Qq9NzrMpWw8?si=rz2E29tCS2QJ64UB" },
+        { id: "video10", title: "Signature Video 2", url: "https://youtu.be/L2SPqda_kSQ?si=1Fue3algw2nUkcip" },
+        { id: "video11", title: "Signature Video 3", url: "https://youtu.be/kfNN-n93-ho?si=T-m6x3jajVOwBGCR" },
+        { id: "video12", title: "Signature Video 4", url: "https://youtu.be/KtU1ZogD0MY?si=EYP7aVxh3G5gscjS" },
       ],
     },
     {
@@ -92,7 +93,6 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#001a1a] font-sans">
-      {/* Fixed Animated Background */}
       <div className="fixed inset-0 z-0">
         <img
           src="/background.jpeg"
@@ -102,7 +102,6 @@ export default function Portfolio() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#006472]/60 via-black/70 to-[#39ffd5]/40 animate-gradient-move" />
       </div>
 
-      {/* Floating Shapes */}
       <div className="fixed inset-0 z-10 pointer-events-none">
         <motion.div
           className="absolute top-20 left-20 w-72 h-72 bg-[#39ffd5]/20 rounded-full blur-3xl"
@@ -116,7 +115,6 @@ export default function Portfolio() {
         />
       </div>
 
-      {/* Section Badges */}
       <div className="relative z-20 text-center py-6">
         {portfolioSections.map((section) => (
           <Badge
@@ -137,7 +135,6 @@ export default function Portfolio() {
         ))}
       </div>
 
-      {/* Central Sections */}
       <section className="py-10 px-6 max-w-6xl mx-auto grid gap-10 relative z-20">
         {portfolioSections.map((section, i) => (
           <motion.div
@@ -148,19 +145,16 @@ export default function Portfolio() {
             transition={{ duration: 0.8, delay: i * 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Fancy Heading */}
             <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
               <span className="bg-gradient-to-r from-[#39ffd5] via-[#90fbe4] to-white bg-clip-text text-transparent animate-gradient-x">
                 {section.title}
               </span>
             </h2>
 
-            {/* Description */}
             <p className="text-center text-[#90fbe4] max-w-2xl mx-auto mb-4 font-medium tracking-wide text-lg">
               {section.description}
             </p>
 
-            {/* Content: Videos with horizontal scroll or images */}
             {section.videos && (
               <div className="relative z-10 py-4 overflow-x-auto overflow-y-hidden scrollbar-custom">
                 <div className="flex gap-6 whitespace-nowrap px-2">
@@ -174,7 +168,10 @@ export default function Portfolio() {
                       onHoverEnd={() => setHoveredCard(null)}
                       className="inline-block min-w-[250px]"
                     >
-                      <div className="relative bg-black/60 border-[#39ffd5]/20 backdrop-blur-sm overflow-hidden group rounded-lg p-4">
+                      <div
+                        onClick={() => window.open(video.url, "_blank")}
+                        className="relative bg-black/60 border-[#39ffd5]/20 backdrop-blur-sm overflow-hidden group rounded-lg p-4 cursor-pointer"
+                      >
                         <motion.div
                           animate={{ scale: hoveredCard === index ? 1.05 : 1 }}
                           transition={{ duration: 0.2 }}
@@ -194,7 +191,6 @@ export default function Portfolio() {
 
             {section.images && <ImageGallery images={section.images} />}
 
-            {/* Pricing Button */}
             <div className="mt-4 text-center">
               <button
                 className="px-8 py-3 rounded-lg bg-[#006472] text-white hover:bg-[#39ffd5] transition-all shadow-lg hover:shadow-[#39ffd5]/40 font-semibold"
@@ -214,7 +210,6 @@ export default function Portfolio() {
         ))}
       </section>
 
-      {/* Floating Bot */}
       <motion.div
         className="fixed bottom-8 right-8 z-30"
         initial={{ scale: 0, rotate: -180 }}
@@ -229,7 +224,6 @@ export default function Portfolio() {
         </button>
       </motion.div>
 
-      {/* Gradient Animations and Scrollbar Customization */}
       <style>{`
         @keyframes gradient-move {
           0%, 100% { background-position: left center; }

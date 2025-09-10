@@ -27,10 +27,10 @@ interface PortfolioSectionProps {
 
 const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle = true }) => {
   const portfolioItems: PortfolioItem[] = [
-    { type: 'video', title: `AI Brand Video - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: '/sample1.mp4', duration: '0:25' },
-    { type: 'video', title: `Product Integration - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: '/sample2.mp4', duration: '0:40' },
-    { type: 'video', title: `${section?.title} Campaign Visual`, thumbnail: '/placeholder.svg', videoSrc: '/sample3.mp4' },
-    { type: 'video', title: `Premium ${section?.title} Asset`, thumbnail: '/placeholder.svg', videoSrc: '/sample4.mp4' },
+    { type: 'video', title: `AI Brand Video - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: 'https://youtu.be/F-VLId-dtlE?si=0Hp0mMeZaTqkbvmS', duration: '0:25' },
+    { type: 'video', title: `Product Integration - ${section?.title}`, thumbnail: '/placeholder.svg', videoSrc: 'https://youtu.be/Scxbta8XWNo?si=m_Jx0PgLFI393637', duration: '0:40' },
+    { type: 'video', title: `${section?.title} Campaign Visual`, thumbnail: '/placeholder.svg', videoSrc: 'https://youtu.be/kOrKmAIpI64?si=S8mWBPkPeND0HLxo' },
+    { type: 'video', title: `Premium ${section?.title} Asset`, thumbnail: '/placeholder.svg', videoSrc: 'https://youtu.be/3Szc8Zi_qZo?si=bdvte4_HNj__OQIj' },
   ];
 
   return (
@@ -45,7 +45,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-20"
-        src="/background-video.mp4" // ✅ Your video file placed in the public folder
+        src="/background-video.mp4"
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -95,35 +95,20 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
             <div
               key={index}
               className="glass-card rounded-2xl overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
+              onClick={() => window.open(item.videoSrc, "_blank")}
             >
               <div className="relative aspect-video bg-muted/20">
-                {item.type === 'video' && item.videoSrc ? (
-                  <video
-                    src={item.videoSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
-                )}
-
-                {item.type === 'video' && (
-                  <>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-[#39ffd5]/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-8 h-8 text-[#006472] ml-1" />
-                      </div>
-                    </div>
-                    {item.duration && (
-                      <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-sm text-white">
-                        {item.duration}
-                      </div>
-                    )}
-                  </>
+                <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-[#39ffd5]/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Play className="w-8 h-8 text-[#006472] ml-1" />
+                  </div>
+                </div>
+                {item.duration && (
+                  <div className="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded text-sm text-white">
+                    {item.duration}
+                  </div>
                 )}
               </div>
               <div className="p-4">
@@ -149,4 +134,3 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ section, showTitle 
 };
 
 export default PortfolioSection;
-
