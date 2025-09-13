@@ -87,12 +87,12 @@ const HeroSection = () => {
               <img 
                 src={heroImage} 
                 alt="AI Video Creation 1" 
-                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                className="w-full sm:w-[48%] h-[300px] sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
               />
               <img 
                 src={hero1Image} 
                 alt="AI Video Creation 2" 
-                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                className="w-full sm:w-[48%] h-[300px] sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
               />
             </div>
 
