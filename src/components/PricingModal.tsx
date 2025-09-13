@@ -16,34 +16,40 @@ interface PricingModalProps {
   } | null;
 }
 
+const getYouTubeThumbnail = (url: string) => {
+  // Extract the video ID from YouTube URL
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([\w-]{11})/);
+  return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : '/placeholder.svg';
+};
+
 const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
   if (!plan) return null;
 
   const portfolioVideos = (() => {
     if (plan.name === 'Essential') {
       return [
-        { title: "Essential Video 1", thumbnail: '/placeholder.svg', duration: '0:25', videoSrc: "https://youtu.be/QTcSLYvHHFc?si=LE2IYqKBo3VQDu5L" },
-        { title: "Essential Video 2", thumbnail: '/placeholder.svg', duration: '0:20', videoSrc: "https://youtu.be/e5p44ED1UpM?si=hRgpAmpWQpHq4t4K" },
-        { title: "Essential Video 3", thumbnail: '/placeholder.svg', duration: '0:30', videoSrc: "https://youtu.be/7X4aG9nK1l4?si=3oOJ7r-W9ZBtMais" },
-        { title: "Essential Video 4", thumbnail: '/placeholder.svg', duration: '0:28', videoSrc: "https://youtu.be/n-gsp7mfDoo?si=P99Uu04GJ9AwRRzh" },
-        { title: "Essential Video 5", thumbnail: '/placeholder.svg', duration: '0:25', videoSrc: "https://youtu.be/O9Q06AIOrfQ?si=4whzvHNIXvkGU9N_" },
-      ];
+        { title: "Essential Video 1", videoSrc: "https://youtu.be/QTcSLYvHHFc?si=LE2IYqKBo3VQDu5L", duration: '0:25' },
+        { title: "Essential Video 2", videoSrc: "https://youtu.be/e5p44ED1UpM?si=hRgpAmpWQpHq4t4K", duration: '0:20' },
+        { title: "Essential Video 3", videoSrc: "https://youtu.be/7X4aG9nK1l4?si=3oOJ7r-W9ZBtMais", duration: '0:30' },
+        { title: "Essential Video 4", videoSrc: "https://youtu.be/n-gsp7mfDoo?si=P99Uu04GJ9AwRRzh", duration: '0:28' },
+        { title: "Essential Video 5", videoSrc: "https://youtu.be/O9Q06AIOrfQ?si=4whzvHNIXvkGU9N_", duration: '0:25' },
+      ].map(video => ({ ...video, thumbnail: getYouTubeThumbnail(video.videoSrc) }));
     } else if (plan.name === 'Impact') {
       return [
-        { title: "Impact Video 1", thumbnail: '/placeholder.svg', duration: '0:40', videoSrc: "https://youtu.be/qwIQ0fdW8Dc?si=_Y5IB1K2s80EAYP7" },
-        { title: "Impact Video 2", thumbnail: '/placeholder.svg', duration: '0:35', videoSrc: "https://youtu.be/cRaZvU_zBEs?si=xh5TLqyYGeUcRnB5" },
-        { title: "Impact Video 3", thumbnail: '/placeholder.svg', duration: '0:45', videoSrc: "https://youtu.be/Rc-6Mr_cXLU?si=l1mHCuugCJLqJw4_" },
-        { title: "Impact Video 4", thumbnail: '/placeholder.svg', duration: '0:38', videoSrc: "https://youtu.be/9lZgKxmObUg?si=j0up1BlGRh7IBJqd" },
-        { title: "Impact Video 5", thumbnail: '/placeholder.svg', duration: '0:50', videoSrc: "https://youtu.be/SfukyiCQRog?si=ZFoMe-n9vRq0-wMh" },
-      ];
+        { title: "Impact Video 1", videoSrc: "https://youtu.be/qwIQ0fdW8Dc?si=_Y5IB1K2s80EAYP7", duration: '0:40' },
+        { title: "Impact Video 2", videoSrc: "https://youtu.be/cRaZvU_zBEs?si=xh5TLqyYGeUcRnB5", duration: '0:35' },
+        { title: "Impact Video 3", videoSrc: "https://youtu.be/Rc-6Mr_cXLU?si=l1mHCuugCJLqJw4_", duration: '0:45' },
+        { title: "Impact Video 4", videoSrc: "https://youtu.be/9lZgKxmObUg?si=j0up1BlGRh7IBJqd", duration: '0:38' },
+        { title: "Impact Video 5", videoSrc: "https://youtu.be/SfukyiCQRog?si=ZFoMe-n9vRq0-wMh", duration: '0:50' },
+      ].map(video => ({ ...video, thumbnail: getYouTubeThumbnail(video.videoSrc) }));
     } else if (plan.name === 'Signature') {
       return [
-        { title: "Signature Video 1", thumbnail: '/placeholder.svg', duration: '0:60', videoSrc: "https://youtu.be/Qq9NzrMpWw8?si=rz2E29tCS2QJ64UB" },
-        { title: "Signature Video 2", thumbnail: '/placeholder.svg', duration: '0:50', videoSrc: "https://youtu.be/L2SPqda_kSQ?si=1Fue3algw2nUkcip" },
-        { title: "Signature Video 3", thumbnail: '/placeholder.svg', duration: '0:45', videoSrc: "https://youtu.be/kfNN-n93-ho?si=T-m6x3jajVOwBGCR" },
-        { title: "Signature Video 4", thumbnail: '/placeholder.svg', duration: '0:55', videoSrc: "https://youtu.be/KtU1ZogD0MY?si=EYP7aVxh3G5gscjS" },
-        { title: "Signature Video 5", thumbnail: '/placeholder.svg', duration: '0:50', videoSrc: "https://youtu.be/0l9afgluciQ?si=A0LNgpWGRkHDm-yf" },
-      ];
+        { title: "Signature Video 1", videoSrc: "https://youtu.be/Qq9NzrMpWw8?si=rz2E29tCS2QJ64UB", duration: '0:60' },
+        { title: "Signature Video 2", videoSrc: "https://youtu.be/L2SPqda_kSQ?si=1Fue3algw2nUkcip", duration: '0:50' },
+        { title: "Signature Video 3", videoSrc: "https://youtu.be/kfNN-n93-ho?si=T-m6x3jajVOwBGCR", duration: '0:45' },
+        { title: "Signature Video 4", videoSrc: "https://youtu.be/KtU1ZogD0MY?si=EYP7aVxh3G5gscjS", duration: '0:55' },
+        { title: "Signature Video 5", videoSrc: "https://youtu.be/0l9afgluciQ?si=A0LNgpWGRkHDm-yf", duration: '0:50' },
+      ].map(video => ({ ...video, thumbnail: getYouTubeThumbnail(video.videoSrc) }));
     } else {
       return [];
     }

@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Star, Zap, Sparkles, Bot, LucideIcon, PlayCircle } from "lucide-react";
-
 import ImageGallery from "@/components/ImageGallery";
 
 interface Video {
@@ -23,6 +22,13 @@ interface Section {
   images?: string[];
 }
 
+interface ApiItem {
+  id: string;
+  title: string;
+  type: "video" | "image";
+  media_url: string;
+}
+
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("essential");
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -32,7 +38,7 @@ export default function Portfolio() {
   const signatureRef = useRef<HTMLDivElement>(null);
   const aiRef = useRef<HTMLDivElement>(null);
 
-  const portfolioSections: Section[] = [
+  const [portfolioSections, setPortfolioSections] = useState<Section[]>([
     {
       id: "essential",
       title: "Essential",
@@ -85,23 +91,63 @@ export default function Portfolio() {
         "https://images.unsplash.com/photo-1676573409812-1596cfa3ab2f?w=500&h=400&fit=crop",
       ],
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    async function fetchPortfolio() {
+      try {
+        const res = await fetch("/api/portfolio");
+        const data: ApiItem[] = await res.json();
+
+        const updatedSections = [...portfolioSections];
+
+        data.forEach((item) => {
+          const section = updatedSections.find((s) =>
+            item.type === "video" && s.videos ? s.id === s.id : s.images
+          );
+
+          if (section) {
+            if (item.type === "video") {
+              section.videos = section.videos
+                ? [...section.videos, { id: item.id, title: item.title, url: item.media_url }]
+                : [{ id: item.id, title: item.title, url: item.media_url }];
+            }
+            if (item.type === "image") {
+              section.images = section.images ? [...section.images, item.media_url] : [item.media_url];
+            }
+          }
+        });
+
+        setPortfolioSections(updatedSections);
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    }
+
+    fetchPortfolio();
+  }, []);
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const getYouTubeThumbnail = (url: string): string => {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+    if (match && match[1]) {
+      return `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`;
+    }
+    return "/placeholder.svg";
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#001a1a] font-sans">
+      {/* Background */}
       <div className="fixed inset-0 z-0">
-        <img
-          src="/background.jpeg"
-          alt="Background"
-          className="w-full h-full object-cover opacity-30"
-        />
+        <img src="/background.jpeg" alt="Background" className="w-full h-full object-cover opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#006472]/60 via-black/70 to-[#39ffd5]/40 animate-gradient-move" />
       </div>
 
+      {/* Floating blobs */}
       <div className="fixed inset-0 z-10 pointer-events-none">
         <motion.div
           className="absolute top-20 left-20 w-72 h-72 bg-[#39ffd5]/20 rounded-full blur-3xl"
@@ -113,147 +159,116 @@ export default function Portfolio() {
           animate={{ x: [0, -30, 30, 0], y: [0, 20, -20, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-[#006472]/10 rounded-full blur-2xl"
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+        />
       </div>
 
-      <div className="relative z-20 text-center py-6">
+      {/* Grid overlay */}
+      <div className="fixed inset-0 z-5 pointer-events-none bg-grid-pattern opacity-10"></div>
+
+      {/* Section badges */}
+      <div className="relative z-20 text-center py-6 flex justify-center gap-4 flex-wrap">
         {portfolioSections.map((section) => (
           <Badge
             key={section.id}
-            className={`px-6 py-2 text-sm font-medium cursor-pointer m-2 transition-all duration-300 transform hover:scale-105 ${
-              activeSection === section.id
-                ? "bg-gradient-to-r from-[#006472] to-[#39ffd5] text-white shadow-lg"
-                : "bg-white/20 backdrop-blur-md text-[#90fbe4] hover:bg-white/30"
-            }`}
-            onClick={() => {
-              setActiveSection(section.id);
-              scrollToSection(section.ref);
-            }}
+            className="cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => scrollToSection(section.ref)}
           >
-            <section.icon className="w-4 h-4 mr-2" />
             {section.title}
           </Badge>
         ))}
       </div>
 
-      <section className="py-10 px-6 max-w-6xl mx-auto grid gap-10 relative z-20">
-        {portfolioSections.map((section, i) => (
+      {/* Sections */}
+      <section className="py-10 px-6 max-w-6xl mx-auto grid gap-20 relative z-20">
+        {portfolioSections.map((section) => (
           <motion.div
             key={section.id}
             ref={section.ref}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: i * 0.2 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-center text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-              <span className="bg-gradient-to-r from-[#39ffd5] via-[#90fbe4] to-white bg-clip-text text-transparent animate-gradient-x">
-                {section.title}
-              </span>
-            </h2>
-
-            <p className="text-center text-[#90fbe4] max-w-2xl mx-auto mb-4 font-medium tracking-wide text-lg">
-              {section.description}
-            </p>
+            <motion.h2
+              className="text-3xl font-bold text-white mb-6 flex items-center gap-3 relative overflow-hidden"
+            >
+              <section.icon />
+              {section.title}
+              <motion.div
+                className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.h2>
+            <p className="text-muted-foreground mb-6">{section.description}</p>
 
             {section.videos && (
-              <div className="relative z-10 py-4 overflow-x-auto overflow-y-hidden scrollbar-custom">
-                <div className="flex gap-6 whitespace-nowrap px-2">
-                  {section.videos.map((video, index) => (
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                {section.videos.map((video, idx) => {
+                  const thumbnail = getYouTubeThumbnail(video.url);
+                  return (
                     <motion.div
-                      key={video.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      onHoverStart={() => setHoveredCard(index)}
-                      onHoverEnd={() => setHoveredCard(null)}
-                      className="inline-block min-w-[250px]"
+                      key={video.id || idx}
+                      className="relative group cursor-pointer overflow-hidden rounded-xl"
+                      onClick={() => window.open(video.url, "_blank")}
+                      initial={{ scale: 1, y: 0 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
-                      <div
-                        onClick={() => window.open(video.url, "_blank")}
-                        className="relative bg-black/60 border-[#39ffd5]/20 backdrop-blur-sm overflow-hidden group rounded-lg p-4 cursor-pointer"
-                      >
+                      <div className="relative aspect-video bg-gray-800">
+                        <img src={thumbnail} alt={video.title} className="w-full h-full object-cover" />
                         <motion.div
-                          animate={{ scale: hoveredCard === index ? 1.05 : 1 }}
-                          transition={{ duration: 0.2 }}
-                          className="flex flex-col items-center justify-center h-full space-y-4"
-                        >
-                          <PlayCircle className="w-12 h-12 text-[#39ffd5]" />
-                          <h3 className="text-white text-lg font-semibold text-center">
-                            {video.title}
-                          </h3>
-                        </motion.div>
+                          className="absolute inset-0 rounded-full border-2 border-[#39ffd5]/30"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <PlayCircle className="w-12 h-12 text-[#39ffd5] opacity-90 group-hover:scale-110 transition-transform" />
+                        </div>
                       </div>
+                      <h3 className="mt-2 text-white font-semibold text-center group-hover:text-[#39ffd5] transition-colors">
+                        {video.title}
+                      </h3>
                     </motion.div>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
             )}
 
             {section.images && <ImageGallery images={section.images} />}
-
-            <div className="mt-4 text-center">
-              <button
-                className="px-8 py-3 rounded-lg bg-[#006472] text-white hover:bg-[#39ffd5] transition-all shadow-lg hover:shadow-[#39ffd5]/40 font-semibold"
-                onClick={() => {
-                  const pricingSection = document.getElementById("pricing");
-                  if (pricingSection) {
-                    pricingSection.scrollIntoView({ behavior: "smooth" });
-                  } else {
-                    window.location.href = "/#pricing";
-                  }
-                }}
-              >
-                Pricing
-              </button>
-            </div>
           </motion.div>
         ))}
       </section>
 
+      {/* Floating Bot */}
       <motion.div
         className="fixed bottom-8 right-8 z-30"
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
       >
-        <button
-          className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-[#006472] to-[#39ffd5] shadow-2xl hover:shadow-[#90fbe4]/50 transition-all duration-300 transform hover:scale-110"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <Bot className="w-6 h-6" />
+        <button className="p-4 bg-[#39ffd5]/20 backdrop-blur-md rounded-full hover:scale-110 transition-transform">
+          <Bot className="w-6 h-6 text-[#006472]" />
         </button>
       </motion.div>
 
       <style>{`
         @keyframes gradient-move {
-          0%, 100% { background-position: left center; }
-          50% { background-position: right center; }
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
         }
         .animate-gradient-move {
           background-size: 200% 200%;
-          animation: gradient-move 12s ease infinite;
+          animation: gradient-move 20s ease infinite;
         }
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          background-size: 200% 200%;
-          animation: gradient-x 6s ease infinite;
-        }
-        .scrollbar-custom::-webkit-scrollbar {
-          height: 8px;
-        }
-        .scrollbar-custom::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .scrollbar-custom::-webkit-scrollbar-thumb {
-          background-color: #006472;
-          border-radius: 4px;
-        }
-        .scrollbar-custom {
-          scrollbar-color: #006472 transparent;
-          scrollbar-width: thin;
+        .bg-grid-pattern {
+          background-image: radial-gradient(#39ffd5 1px, transparent 1px);
+          background-size: 20px 20px;
         }
       `}</style>
     </div>

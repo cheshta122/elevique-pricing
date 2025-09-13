@@ -17,7 +17,7 @@ const HeroSection = () => {
         playsInline
       ></video>
 
-      {/* Video Overlay to lighten the background */}
+      {/* Video Overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Animated Background Elements */}
@@ -28,14 +28,15 @@ const HeroSection = () => {
         <div className="absolute bottom-20 right-10 w-28 h-28 rounded-full bg-accent/25 animate-pulse-glow blur-xl" style={{ animationDelay: '1s' }}></div>
       </div>
       
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-6xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Side - Content */}
           <div>
             <div className="mb-8">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent relative">                  <br></br>
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent relative">
+                  <br />
                   Transform Your 
                   <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full animate-pulse-glow opacity-60"></div>
                   <div className="absolute top-1/2 -left-4 w-2 h-2 bg-accent rounded-full animate-float opacity-80" style={{ animationDelay: '1s' }}></div>
@@ -82,16 +83,16 @@ const HeroSection = () => {
 
           {/* Right Side - Interactive Images */}
           <div className="relative group cursor-pointer" onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}>
-            <div className="flex items-center gap-6 h-[500px]">
+            <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-6 h-auto sm:h-[500px]">
               <img 
                 src={heroImage} 
                 alt="AI Video Creation 1" 
-                className="w-[49%] h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
               />
               <img 
                 src={hero1Image} 
                 alt="AI Video Creation 2" 
-                className="w-[49%] h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
               />
             </div>
 
