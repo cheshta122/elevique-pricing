@@ -93,11 +93,24 @@ export default function Portfolio() {
       icon: Bot,
       description: "Cutting-edge AI-powered visual content and automation",
       ref: aiRef,
-      images: [
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1676299081847-824916de030a?w=500&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=500&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1676573409812-1596cfa3ab2f?w=500&h=400&fit=crop",
+      images:[
+      "/portfolio-images/3.jpg",
+      "/portfolio-images/4.jpg",
+      "/portfolio-images/5.jpg",
+      "/portfolio-images/6.jpg",
+      "/portfolio-images/LUX 1.jpg",
+      "/portfolio-images/LUX 2.jpg",
+      "/portfolio-images/LUX 3.jpg",
+      "/portfolio-images/LUX 4.jpg",
+      "/portfolio-images/LUX 5.jpg",
+      "/portfolio-images/LUX 6.jpg",
+      "/portfolio-images/LUX 7.jpg",
+      "/portfolio-images/LUX 8.jpg",
+      "/portfolio-images/LUX 9.jpg",
+      "/portfolio-images/LUX 10.jpg",
+      "/portfolio-images/LUX 11.jpg",
+
+
       ],
     },
   ])
@@ -197,7 +210,7 @@ export default function Portfolio() {
               initial={{ scale: 1, y: 0 }}
               whileHover={{ scale: 1.05, y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              style={{ width: "280px", height: "157px" }}
+              style={{ width: "200px", height: "300px" }}
             >
               <img
                 src={image || "/placeholder.svg"}

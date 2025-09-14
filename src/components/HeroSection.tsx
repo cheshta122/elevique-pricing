@@ -10,7 +10,7 @@ const HeroSection = () => {
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/videobg.m4v"
+        src="/videobg.mp4"
         autoPlay
         loop
         muted
@@ -81,32 +81,36 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Side - Interactive Images */}
-          <div className="relative group cursor-pointer" onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}>
-            <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-6 h-auto sm:h-[500px]">
-              <img 
-                src={heroImage} 
-                alt="AI Video Creation 1" 
-                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
-              />
-              <img 
-                src={hero1Image} 
-                alt="AI Video Creation 2" 
-                className="w-full sm:w-[48%] h-64 sm:h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
-              />
-            </div>
+         {/* Right Side - Interactive Images */}
+<div 
+  className="relative group cursor-pointer" 
+  onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}
+>
+  <div className="grid grid-cols-2 gap-6 items-center justify-center h-40 sm:h-[500px]">
+    <img 
+      src={heroImage} 
+      alt="AI Video Creation 1" 
+      className="w-full h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+    />
+    <img 
+      src={hero1Image} 
+      alt="AI Video Creation 2" 
+      className="w-full h-full object-cover rounded-3xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+    />
+  </div>
 
-            <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/60 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
-            
-            <div className="absolute bottom-6 left-6 right-6 z-30 text-center">
-              <p className="text-lg font-semibold text-white mb-2">Click to Start Your Journey</p>
-              <p className="text-sm text-white/80">Get your first AI video in 3-14 days</p>
-            </div>
+  <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/60 via-transparent to-transparent rounded-3xl pointer-events-none"></div>
+  
+  <div className="absolute bottom-6 left-6 right-6 z-30 text-center">
+    <p className="text-lg font-semibold text-white mb-2">Click to Start Your Journey</p>
+    <p className="text-sm text-white/80">Get your first AI video in 3-14 days</p>
+  </div>
 
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow opacity-80"></div>
-            <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-accent rounded-full animate-float opacity-60" style={{ animationDelay: '1.5s' }}></div>
-            <div className="absolute top-1/3 -left-8 w-4 h-4 bg-secondary rounded-full animate-pulse opacity-70" style={{ animationDelay: '0.8s' }}></div>
-          </div>
+  <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow opacity-80"></div>
+  <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-accent rounded-full animate-float opacity-60" style={{ animationDelay: '1.5s' }}></div>
+  <div className="absolute top-1/3 -left-8 w-4 h-4 bg-secondary rounded-full animate-pulse opacity-70" style={{ animationDelay: '0.8s' }}></div>
+</div>
+
 
         </div>
       </div>
