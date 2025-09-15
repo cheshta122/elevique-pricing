@@ -94,23 +94,21 @@ export default function Portfolio() {
       description: "Cutting-edge AI-powered visual content and automation",
       ref: aiRef,
       images:[
-      "/portfolio-images/3.jpg",
-      "/portfolio-images/4.jpg",
-      "/portfolio-images/5.jpg",
-      "/portfolio-images/6.jpg",
-      "/portfolio-images/LUX 1.jpg",
-      "/portfolio-images/LUX 2.jpg",
-      "/portfolio-images/LUX 3.jpg",
-      "/portfolio-images/LUX 4.jpg",
-      "/portfolio-images/LUX 5.jpg",
-      "/portfolio-images/LUX 6.jpg",
-      "/portfolio-images/LUX 7.jpg",
-      "/portfolio-images/LUX 8.jpg",
-      "/portfolio-images/LUX 9.jpg",
-      "/portfolio-images/LUX 10.jpg",
-      "/portfolio-images/LUX 11.jpg",
-
-
+        "/portfolio-images/3.jpg",
+        "/portfolio-images/4.jpg",
+        "/portfolio-images/5.jpg",
+        "/portfolio-images/6.jpg",
+        "/portfolio-images/LUX 1.jpg",
+        "/portfolio-images/LUX 2.jpg",
+        "/portfolio-images/LUX 3.jpg",
+        "/portfolio-images/LUX 4.jpg",
+        "/portfolio-images/LUX 5.jpg",
+        "/portfolio-images/LUX 6.jpg",
+        "/portfolio-images/LUX 7.jpg",
+        "/portfolio-images/LUX 8.jpg",
+        "/portfolio-images/LUX 9.jpg",
+        "/portfolio-images/LUX 10.jpg",
+        "/portfolio-images/LUX 11.jpg",
       ],
     },
   ])
@@ -217,11 +215,6 @@ export default function Portfolio() {
                 alt={`AI Generated ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                <h3 className="text-white font-semibold text-sm group-hover:text-[#39ffd5] transition-colors">
-                  AI Generated Image {idx + 1}
-                </h3>
-              </div>
             </motion.div>
           ))}
         </div>
@@ -286,6 +279,7 @@ export default function Portfolio() {
 
       <div className="fixed inset-0 z-5 pointer-events-none bg-grid-pattern opacity-10"></div>
 
+      {/* ✅ Updated Navigation Bar with Pricing Badge */}
       <div className="relative z-20 text-center py-6 flex justify-center gap-4 flex-wrap">
         {portfolioSections.map((section) => (
           <Badge
@@ -296,6 +290,12 @@ export default function Portfolio() {
             {section.title}
           </Badge>
         ))}
+        <Badge
+          className="cursor-pointer hover:scale-105 transition-transform"
+          onClick={() => window.location.href = "/#pricing"}
+        >
+          Pricing
+        </Badge>
       </div>
 
       <section className="py-10 max-w-full mx-auto relative z-20">

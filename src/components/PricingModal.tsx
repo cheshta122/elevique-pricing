@@ -131,19 +131,17 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
               ))}
             </div>
 
-            <Button
-              className="w-full bg-muted/20 hover:bg-muted/30 text-foreground mb-4"
-              onClick={() => {
-                onClose(); // Close the modal first
-                const portfolioSection = document.getElementById('portfolio');
-                if (portfolioSection) {
-                  portfolioSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              View All Portfolio
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+           <Button
+  className="w-full bg-muted/20 hover:bg-muted/30 text-foreground mb-4"
+  onClick={() => {
+    onClose();
+    window.open('https://elevique.in/ai-video/', '_blank');
+  }}
+>
+  View All Portfolio
+  <ArrowRight className="w-4 h-4 ml-2" />
+</Button>
+
             <Button
               className="w-full bg-gradient-button hover:opacity-90"
               onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}

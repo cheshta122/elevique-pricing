@@ -45,32 +45,38 @@ const Index = () => {
 
       <main className="relative z-10">
         <HeroSection />
-        <div id="portfolio">
-<PortfolioSection />
-        </div>
+        
         <div id="pricing">
           <PricingSection />
         </div>
         <AIImagesSection />
+        <div id="portfolio">
+<PortfolioSection />
+        </div>
         <FAQSection />
         <ContactSection />
       </main>
 
       <footer className="relative z-10 py-12 px-6 border-t border-white/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 rounded-full bg-gradient-button animate-pulse-glow"></div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                eleVique
-              </h1>
-            </div>
+       
+             <div className="container mx-auto px-6 h-full">
+        <div className="flex items-center justify-between h-full">
+          <div className="flex items-center space-x-2 h-full">
+            {/* Logo image */}
+            <img 
+              src="/logo.png" // apna logo path
+              alt="eleVique Logo"
+              className="h-16 w-auto object-contain
+             drop-shadow-[0_0_20px_rgba(255,255,255,0.9)]
+             transition-all duration-500"
+            />
+          </div>
 
             <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
               <a href="#faq" className="hover:text-primary transition-colors">FAQ</a>
               <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
-              <span>© 2024 eleVique. All rights reserved.</span>
+              <span>© 2025 eleVique. All rights reserved.</span>
             </div>
           </div>
         </div>

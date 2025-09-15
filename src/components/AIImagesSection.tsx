@@ -12,7 +12,6 @@ const imagePackages = [
 export default function AIImagesSection() {
   return (
     <section id="ai-images" className="relative py-20 px-6 overflow-hidden">
-      
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -27,69 +26,101 @@ export default function AIImagesSection() {
       <div className="absolute inset-0 bg-black/20"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              eleVique — AI Images Packages
+        
+
+        {/* Table Form for Packages */}
+        <div className="glass-card rounded-3xl p-6 relative group hover:scale-105 transition-all duration-300 mx-auto max-w-7xl animate-fadeIn delay-400">
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[#39ffd5]/20 to-[#90fbe4]/20 flex items-center justify-center animate-float">
+              <ImageIcon className="w-8 h-8 text-[#39ffd5]" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-foreground">Image Packages</h3>
+            <p className="text-muted-foreground text-sm mb-2">Choose from multiple AI image plans</p>
+          </div>
+
+         <div className="overflow-hidden rounded-xl border border-gray-700/50 mb-4 animate-fadeIn max-w-4xl mx-auto">
+  <table className="w-full text-left">
+    <thead>
+      <tr className="bg-gray-900/50 border-b border-gray-700/50">
+        <th className="p-3 text-gray-200 font-semibold">Package</th>
+        <th className="p-3 text-gray-200 font-semibold text-center">Images</th>
+        <th className="p-3 text-gray-200 font-semibold text-center">Default Templates</th>
+        <th className="p-3 text-gray-200 font-semibold text-center">Custom Concepts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {imagePackages.map((pkg, index) => (
+        <tr
+          key={index}
+          className="bg-gray-900/30 border-b border-gray-700/30 hover:bg-gray-800/40 transition-all duration-300"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <td className="p-3 flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full bg-[#39ffd5]/30 flex items-center justify-center animate-float">
+              <span className="text-white font-bold text-sm">{index + 1}</span>
+            </div>
+          </td>
+          <td className="p-3 text-center text-sm">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#39ffd5]/20 border border-[#39ffd5]/40">
+              {pkg.count} 
             </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Professional AI-generated images for your brand with cutting-edge technology.
-          </p>
-        </div>
+          </td>
+          <td className="p-3 text-center text-white font-semibold text-sm">₹ {pkg.defaultPrice.toLocaleString()}</td>
+          <td className="p-3 text-center text-[#39ffd5] font-semibold text-sm animate-glow">
+            ₹ {pkg.customPrice.toLocaleString()}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-        <div className="grid lg:grid-cols-4 gap-8">
-          {imagePackages.map((pkg, index) => {
-            // WhatsApp link for this package
-            const whatsappLink = `https://api.whatsapp.com/send/?phone=917217832613&text=I'm%20interested%20in%20the%20${pkg.count}%20AI%20images%20package&type=phone_number&app_absent=0`;
+          
 
-            return (
-              <div
-                key={index}
-                className="glass-card rounded-3xl p-8 relative group hover:scale-105 transition-all duration-300 flex flex-col"
-              >
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-[#39ffd5]/20 to-[#90fbe4]/20 flex items-center justify-center">
-                    <ImageIcon className="w-8 h-8 text-[#39ffd5]" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2 text-foreground">Image Package</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{pkg.count} AI images</p>
-                </div>
+          {/* Centered Explore Button with Animation */}
+<div className="flex justify-center mt-6 animate-fadeIn delay-600">
+  <Button
+    asChild
+    className="px-6 py-2 bg-gradient-to-r from-[#39ffd5] to-[#90fbe4] text-black font-semibold rounded-lg 
+               transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:brightness-110"
+    size="sm"
+  >
+    <a
+      href="https://elevique.in/ai-photos/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block text-center"
+    >
+      Explore
+    </a>
+  </Button>
+</div>
 
-                <div className="space-y-4 mb-8">
-                  <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700/50">
-                    <p className="text-gray-300 text-sm mb-1">Default Templates</p>
-                    <p className="text-white text-xl font-bold">₹ {pkg.defaultPrice.toLocaleString()}</p>
-                  </div>
-
-                  <div className="bg-gray-900/50 rounded-lg p-4 border border-[#39ffd5]/30">
-                    <p className="text-gray-300 text-sm mb-1">Custom Concepts</p>
-                    <p className="text-[#39ffd5] text-xl font-bold">₹ {pkg.customPrice.toLocaleString()}</p>
-                  </div>
-                </div>
-
-                <div className="flex-grow"></div>
-
-                {/* ✅ Fixed WhatsApp Button */}
-                <Button
-                  asChild
-                  className="w-full bg-gradient-button hover:opacity-90 transition-all duration-300 mt-auto"
-                  size="lg"
-                >
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block text-center"
-                  >
-                    Explore
-                  </a>
-                </Button>
-              </div>
-            );
-          })}
         </div>
       </div>
+
+      <style>
+        {`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glow {
+          0%,100% { text-shadow: 0 0 5px rgba(57,255,213,0.3); }
+          50% { text-shadow: 0 0 15px rgba(57,255,213,0.6); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-fadeIn { animation: fadeIn 0.8s ease forwards; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+      `}
+      </style>
     </section>
   );
 }
