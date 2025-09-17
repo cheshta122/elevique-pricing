@@ -16,7 +16,7 @@ const ContactSection = () => {
       {/* Video Background */}
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
-        src="/background-video.mp4"  // Path to your video in public folder
+        src="/background-video.mp4"
         autoPlay
         loop
         muted
@@ -70,9 +70,12 @@ const ContactSection = () => {
                 <span className="ml-2 text-sm font-medium">Facebook</span>
               </a>
 
-              <div className="flex items-center justify-center p-4 bg-muted/10 rounded-xl">
-                <Phone className="w-6 h-6 text-muted-foreground" />
-                <span className="ml-2 text-sm font-medium text-muted-foreground">+91 72178 32613</span>
+              {/* Fixed Phone Section */}
+              <div className="flex items-center justify-center p-4 bg-muted/10 rounded-xl break-words">
+                <Phone className="w-6 h-6 text-muted-foreground flex-shrink-0" />
+                <span className="ml-2 text-sm font-medium text-muted-foreground whitespace-normal text-center">
+                  +91 72178 32613
+                </span>
               </div>
             </div>
           </div>

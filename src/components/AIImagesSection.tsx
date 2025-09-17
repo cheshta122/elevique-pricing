@@ -36,15 +36,14 @@ export default function AIImagesSection() {
             <p className="text-muted-foreground text-sm mb-2">Choose from multiple AI image plans</p>
           </div>
 
-          {/* Responsive Table */}
-          <div className="overflow-x-auto rounded-xl border border-gray-700/50 mb-4 animate-fadeIn max-w-4xl mx-auto">
-            <table className="w-full text-left min-w-[600px]">
+          {/* Responsive Table - First Column Removed */}
+          <div className="rounded-xl border border-gray-700/50 mb-4 animate-fadeIn w-full overflow-hidden">
+            <table className="w-full table-auto text-left">
               <thead>
                 <tr className="bg-gray-900/50 border-b border-gray-700/50">
-                  <th className="p-3 text-gray-200 font-semibold">Package</th>
-                  <th className="p-3 text-gray-200 font-semibold text-center">Images</th>
-                  <th className="p-3 text-gray-200 font-semibold text-center">Default Templates</th>
-                  <th className="p-3 text-gray-200 font-semibold text-center">Custom Concepts</th>
+                  <th className="p-2 text-gray-200 font-semibold text-sm text-center">Images</th>
+                  <th className="p-2 text-gray-200 font-semibold text-sm text-center">Default Templates</th>
+                  <th className="p-2 text-gray-200 font-semibold text-sm text-center">Custom Concepts</th>
                 </tr>
               </thead>
               <tbody>
@@ -54,20 +53,15 @@ export default function AIImagesSection() {
                     className="bg-gray-900/30 border-b border-gray-700/30 hover:bg-gray-800/40 transition-all duration-300"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <td className="p-3 flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-[#39ffd5]/30 flex items-center justify-center animate-float">
-                        <span className="text-white font-bold text-sm">{index + 1}</span>
-                      </div>
-                    </td>
-                    <td className="p-3 text-center text-sm">
+                    <td className="p-2 text-center text-sm">
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#39ffd5]/20 border border-[#39ffd5]/40">
-                        {pkg.count} 
+                        {pkg.count}
                       </span>
                     </td>
-                    <td className="p-3 text-center text-white font-semibold text-sm">
+                    <td className="p-2 text-center text-white font-semibold text-sm">
                       ₹ {pkg.defaultPrice.toLocaleString()}
                     </td>
-                    <td className="p-3 text-center text-[#39ffd5] font-semibold text-sm animate-glow">
+                    <td className="p-2 text-center text-[#39ffd5] font-semibold text-sm animate-glow">
                       ₹ {pkg.customPrice.toLocaleString()}
                     </td>
                   </tr>

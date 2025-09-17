@@ -51,28 +51,27 @@ const Index = () => {
         </div>
         <AIImagesSection />
         <div id="portfolio">
-<PortfolioSection />
+          <PortfolioSection />
         </div>
         <FAQSection />
         <ContactSection />
       </main>
 
       <footer className="relative z-10 py-12 px-6 border-t border-white/10">
-       
-             <div className="container mx-auto px-6 h-full">
-        <div className="flex items-center justify-between h-full">
-          <div className="flex items-center space-x-2 h-full">
-            {/* Logo image */}
-            <img 
-              src="/logo.png" // apna logo path
-              alt="eleVique Logo"
-              className="h-16 w-auto object-contain
-             drop-shadow-[0_0_20px_rgba(255,255,255,0.9)]
-             transition-all duration-500"
-            />
-          </div>
+        <div className="container mx-auto px-6 h-full">
+          <div className="flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-0 h-full text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-2">
+              {/* Logo image */}
+              <img 
+                src="/logo.png" // apna logo path
+                alt="eleVique Logo"
+                className="h-16 w-auto object-contain
+                  drop-shadow-[0_0_20px_rgba(255,255,255,0.9)]
+                  transition-all duration-500"
+              />
+            </div>
 
-            <div className="flex items-center space-x-6 text-sm text-muted-foreground">
+            <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-sm text-muted-foreground">
               <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
               <a href="#faq" className="hover:text-primary transition-colors">FAQ</a>
               <a href="#contact" className="hover:text-primary transition-colors">Contact</a>

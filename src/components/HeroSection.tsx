@@ -103,7 +103,7 @@ const HeroSection = () => {
   
   <div className="absolute bottom-6 left-6 right-6 z-30 text-center">
     <p className="text-lg font-semibold text-white mb-2">Click to Start Your Journey</p>
-    <p className="text-sm text-white/80">Get your first AI video in 3-14 days</p>
+    <p className="text-sm text-white/80">Get your first AI visual now </p>
   </div>
 
   <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow opacity-80"></div>
