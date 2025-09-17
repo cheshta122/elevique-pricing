@@ -61,12 +61,15 @@ const ContactSection = () => {
               </a>
 
               {/* Fixed Phone Section placed in WhatsApp's position */}
-              <div className="flex items-center justify-center p-4 bg-muted/10 rounded-xl break-words">
-                <Phone className="w-6 h-6 text-muted-foreground flex-shrink-0" />
-                <span className="ml-2 text-sm font-medium text-muted-foreground whitespace-normal text-center">
-                  +91 72178 32613
-                </span>
-              </div>
+              {/* Fixed Phone Section */}
+<div className="flex items-center justify-center gap-2 p-4 bg-muted/10 rounded-xl">
+  <Phone className="w-6 h-6 text-muted-foreground" />
+  <span className="text-sm font-medium text-muted-foreground">
+    +91 72178 32613
+  </span>
+</div>
+
+
             </div>
           </div>
 
