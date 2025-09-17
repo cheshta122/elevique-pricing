@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Phone, Instagram, Facebook, MessageCircle, ArrowUp } from "lucide-react";
+import { Phone, Instagram, Facebook, ArrowUp } from "lucide-react";
 
 const ContactSection = () => {
   // Function to scroll to top
@@ -51,16 +51,6 @@ const ContactSection = () => {
               </a>
 
               <a
-                href="https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center p-4 bg-gradient-cosmic/20 rounded-xl hover:bg-gradient-cosmic/30 transition-all duration-300 group"
-              >
-                <MessageCircle className="w-6 h-6 text-accent group-hover:scale-110 transition-transform" />
-                <span className="ml-2 text-sm font-medium">WhatsApp</span>
-              </a>
-
-              <a
                 href="https://www.facebook.com/profile.php?id=61572559022754"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -70,7 +60,7 @@ const ContactSection = () => {
                 <span className="ml-2 text-sm font-medium">Facebook</span>
               </a>
 
-              {/* Fixed Phone Section */}
+              {/* Fixed Phone Section placed in WhatsApp's position */}
               <div className="flex items-center justify-center p-4 bg-muted/10 rounded-xl break-words">
                 <Phone className="w-6 h-6 text-muted-foreground flex-shrink-0" />
                 <span className="ml-2 text-sm font-medium text-muted-foreground whitespace-normal text-center">
@@ -92,8 +82,8 @@ const ContactSection = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center px-8 py-4 bg-gradient-button rounded-xl font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105"
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp Now
+              <Phone className="w-5 h-5 mr-2" />
+              Call Now
             </a>
             <p className="text-sm text-muted-foreground mt-4">
               We typically respond within 2-4 hours during business hours.

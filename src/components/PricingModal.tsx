@@ -66,38 +66,9 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
             {plan.name} Package Details
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="grid md:grid-cols-2 gap-8 mt-6">
-          {/* Package Details */}
-          <div>
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-foreground mb-2">{plan.subtitle}</h3>
-              <p className="text-primary mb-2">Duration: {plan.duration}</p>
-              <p className="text-2xl font-bold text-foreground">Starting {plan.price}</p>
-            </div>
-
-            <div className="space-y-3 mb-6">
-              <h4 className="font-semibold text-foreground">What's Included:</h4>
-              {plan.features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="space-y-3">
-              <h4 className="font-semibold text-foreground">Package Options:</h4>
-              {plan.packages.map((pkg, index) => (
-                <div key={index} className="flex justify-between items-center py-2 px-4 bg-muted/20 rounded-lg">
-                  <span className="text-sm font-medium">{pkg.videos} Video{pkg.videos !== 1 ? 's' : ''}</span>
-                  <span className="text-sm font-bold text-primary">{pkg.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Portfolio Videos */}
+          {/* Portfolio Videos – now placed first */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Sample Works - {plan.name}</h4>
             
@@ -131,19 +102,48 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
               ))}
             </div>
 
-           <Button
-  className="w-full bg-muted/20 hover:bg-muted/30 text-foreground mb-4"
-  onClick={() => {
-    onClose();
-    window.open('https://elevique.in/ai-video/', '_blank');
-  }}
->
-  View All Portfolio
-  <ArrowRight className="w-4 h-4 ml-2" />
-</Button>
+            <Button
+              className="w-full bg-muted/20 hover:bg-muted/30 text-foreground mb-4"
+              onClick={() => {
+                onClose();
+                window.open('https://elevique.in/ai-video/', '_blank');
+              }}
+            >
+              View All Portfolio
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+
+          {/* Package Details – now placed second */}
+          <div>
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold text-foreground mb-2">{plan.subtitle}</h3>
+              <p className="text-primary mb-2">Duration: {plan.duration}</p>
+              <p className="text-2xl font-bold text-foreground">Starting {plan.price}</p>
+            </div>
+
+            <div className="space-y-3 mb-6">
+              <h4 className="font-semibold text-foreground">What's Included:</h4>
+              {plan.features.map((feature, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="font-semibold text-foreground">Package Options:</h4>
+              {plan.packages.map((pkg, index) => (
+                <div key={index} className="flex justify-between items-center py-2 px-4 bg-muted/20 rounded-lg">
+                  <span className="text-sm font-medium">{pkg.videos} Video{pkg.videos !== 1 ? 's' : ''}</span>
+                  <span className="text-sm font-bold text-primary">{pkg.price}</span>
+                </div>
+              ))}
+            </div>
 
             <Button
-              className="w-full bg-gradient-button hover:opacity-90"
+              className="w-full bg-gradient-button hover:opacity-90 mt-6"
               onClick={() => window.open('https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0', '_blank')}
             >
               Get Started - {plan.name}
@@ -156,3 +156,4 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
 };
 
 export default PricingModal;
+
