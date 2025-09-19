@@ -22,10 +22,22 @@ export default function AIImagesSection() {
         playsInline
       ></video>
 
-      {/* Overlay to darken video slightly */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/20"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Heading Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-[#39ffd5] to-[#90fbe4] bg-clip-text text-transparent">
+              eleVique — AI Image Packages
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Transform your brand with AI-powered image creation. Unique, creative, and high-quality designs tailored for you.
+          </p>
+        </div>
+
         {/* Table Form for Packages */}
         <div className="glass-card rounded-3xl p-6 relative group hover:scale-105 transition-all duration-300 mx-auto max-w-7xl animate-fadeIn delay-400">
           <div className="text-center mb-6">
@@ -36,7 +48,7 @@ export default function AIImagesSection() {
             <p className="text-muted-foreground text-sm mb-2">Choose from multiple AI image plans</p>
           </div>
 
-          {/* Responsive Table - First Column Removed */}
+          {/* Responsive Table */}
           <div className="rounded-xl border border-gray-700/50 mb-4 animate-fadeIn w-full overflow-hidden">
             <table className="w-full table-auto text-left">
               <thead>
@@ -70,7 +82,7 @@ export default function AIImagesSection() {
             </table>
           </div>
 
-          {/* Centered Explore Button with Animation */}
+          {/* Explore Button */}
           <div className="flex justify-center mt-6 animate-fadeIn delay-600">
             <Button
               asChild

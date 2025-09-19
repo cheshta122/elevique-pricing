@@ -62,12 +62,16 @@ const ContactSection = () => {
 
               {/* Fixed Phone Section placed in WhatsApp's position */}
               {/* Fixed Phone Section */}
-<div className="flex items-center justify-center gap-2 p-4 bg-muted/10 rounded-xl">
+{/* Fixed Phone Section */}
+<a
+  href="tel:+917217832613"
+  className="flex items-center justify-center gap-2 p-4 bg-muted/10 rounded-xl hover:bg-muted/20 transition-all duration-300"
+>
   <Phone className="w-6 h-6 text-muted-foreground" />
   <span className="text-sm font-medium text-muted-foreground">
-     7217832613
+    7217832613
   </span>
-</div>
+</a>
 
 
             </div>
@@ -83,10 +87,10 @@ const ContactSection = () => {
               href="https://api.whatsapp.com/send/?phone=917217832613&text&type=phone_number&app_absent=0"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 bg-gradient-button rounded-xl font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-8 py-4 bg-gradient-button rounded-xl font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-black"
             >
               <Phone className="w-5 h-5 mr-2" />
-              Call Now
+              Message Now
             </a>
             <p className="text-sm text-muted-foreground mt-4">
               We typically respond within 2-4 hours during business hours.

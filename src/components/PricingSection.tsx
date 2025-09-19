@@ -19,7 +19,7 @@ const PricingSection = () => {
       duration: "up to 25 sec",
       price: "₹3,500",
       icon: <Rocket className="w-6 h-6" />,
-      popular: false,
+      popular: true,
       features: [
         "Realistic AI characters",
         "Clean edit",
@@ -65,7 +65,7 @@ const PricingSection = () => {
       duration: "30-60 sec",
       price: "₹30,000",
       icon: <Crown className="w-6 h-6" />,
-      popular: false,
+      popular: true,
       features: [
         "TV-grade visuals & finishing",
         "Premium cinematic edit",
@@ -105,7 +105,7 @@ const PricingSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              eleVique — Pricing Packages
+              eleVique — AI Video Packages
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -121,13 +121,7 @@ const PricingSection = () => {
                 plan.popular ? 'ring-2 ring-primary/50 animate-glow' : ''
               }`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-button px-6 py-2 rounded-full text-sm font-medium text-primary-foreground">
-                    Most Popular
-                  </div>
-                </div>
-              )}
+              
 
               <div className="text-center mb-8">
                 <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${

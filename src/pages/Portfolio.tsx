@@ -169,6 +169,7 @@ export default function Portfolio() {
             msOverflowStyle: "none",
           }}
         >
+          {/* ✅ Videos */}
           {section.videos?.map((video, idx) => {
             const thumbnail = getYouTubeThumbnail(video.url)
             return (
@@ -201,6 +202,7 @@ export default function Portfolio() {
             )
           })}
 
+          {/* ✅ Images */}
           {section.images?.map((image, idx) => (
             <motion.div
               key={idx}
@@ -219,6 +221,7 @@ export default function Portfolio() {
           ))}
         </div>
 
+        {/* ✅ Scroll Progress Bar */}
         <div className="px-6 mt-4">
           <div className="relative w-full h-1 bg-gray-800 rounded-full overflow-hidden">
             <motion.div
@@ -254,11 +257,13 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#001a1a] font-sans">
+      {/* ✅ Background */}
       <div className="fixed inset-0 z-0">
         <img src="/background.jpeg" alt="Background" className="w-full h-full object-cover opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#006472]/60 via-black/70 to-[#39ffd5]/40 animate-gradient-move" />
       </div>
 
+      {/* ✅ Floating Animated Blobs */}
       <div className="fixed inset-0 z-10 pointer-events-none">
         <motion.div
           className="absolute top-20 left-20 w-72 h-72 bg-[#39ffd5]/20 rounded-full blur-3xl"
@@ -279,7 +284,7 @@ export default function Portfolio() {
 
       <div className="fixed inset-0 z-5 pointer-events-none bg-grid-pattern opacity-10"></div>
 
-      {/* ✅ Updated Navigation Bar with Pricing Badge */}
+      {/* ✅ Navigation Bar */}
       <div className="relative z-20 text-center py-6 flex justify-center gap-4 flex-wrap">
         {portfolioSections.map((section) => (
           <Badge
@@ -296,25 +301,23 @@ export default function Portfolio() {
         >
           Pricing
         </Badge>
+        {/* ✅ New Button (open in new tab) */}
+        <Badge
+          className="cursor-pointer hover:scale-105 transition-transform"
+          onClick={() => window.open("https://elevique.in/portfolio/", "_blank")}
+        >
+          Visit Full Portfolio
+        </Badge>
       </div>
 
+      {/* ✅ Sections */}
       <section className="py-10 max-w-full mx-auto relative z-20">
         {portfolioSections.map((section) => (
           <HorizontalScrollSection key={section.id} section={section} />
         ))}
       </section>
 
-      <motion.div
-        className="fixed bottom-8 right-8 z-30"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <button className="p-4 bg-[#39ffd5]/20 backdrop-blur-md rounded-full hover:scale-110 transition-transform">
-          <Bot className="w-6 h-6 text-[#006472]" />
-        </button>
-      </motion.div>
-
+      {/* ✅ Extra Styles */}
       <style>{`
         @keyframes gradient-move {
           0% { background-position: 0% 50%; }
