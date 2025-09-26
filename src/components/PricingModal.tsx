@@ -50,7 +50,7 @@ const PricingModal = ({ isOpen, onClose, plan }: PricingModalProps) => {
         { title: "Signature Video 1", thumbnail: getYouTubeThumbnail("https://youtu.be/g_KfFz_5XrA?si=k-r_XfmRrgPutQTp"), duration: '0:60', videoSrc: "https://youtu.be/g_KfFz_5XrA?si=k-r_XfmRrgPutQTp" },
         { title: "Signature Video 2", thumbnail: getYouTubeThumbnail("https://youtu.be/KtU1ZogD0MY?si=7ZJOg6rzyHNNMfL1"), duration: '0:50', videoSrc: "https://youtu.be/KtU1ZogD0MY?si=7ZJOg6rzyHNNMfL1" },
         { title: "Signature Video 3", thumbnail: getYouTubeThumbnail("https://youtu.be/xS8HD6e3kBw?si=kZEfDscMh5qbon6k"), duration: '0:45', videoSrc: "https://youtu.be/xS8HD6e3kBw?si=kZEfDscMh5qbon6k" },
-        { title: "Signature Video 4", thumbnail: getYouTubeThumbnail("https://youtu.be/KtU1ZogD0MY?si=W94MKnt8DahsVNLW"), duration: '0:55', videoSrc: "https://youtu.be/KtU1ZogD0MY?si=W94MKnt8DahsVNLW" },
+        { title: "Signature Video 4", thumbnail: getYouTubeThumbnail("https://youtu.be/kfNN-n93-ho?si=aRC_eKBd1RgxBuXX"), duration: '0:55', videoSrc: "https://youtu.be/kfNN-n93-ho?si=aRC_eKBd1RgxBuXX" },
         { title: "Signature Video 5", thumbnail: getYouTubeThumbnail("https://youtu.be/Qq9NzrMpWw8?si=_fh0raSqLRKCOGSE"), duration: '0:50', videoSrc: "https://youtu.be/Qq9NzrMpWw8?si=_fh0raSqLRKCOGSE" },
       ];
     } else {

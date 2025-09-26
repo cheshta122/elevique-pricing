@@ -317,6 +317,16 @@ export default function Portfolio() {
         ))}
       </section>
 
+      {/* ✅ Visit Full Portfolio at the end */}
+      <div className="relative z-20 text-center py-10">
+        <Badge
+          className="cursor-pointer hover:scale-110 transition-transform text-lg px-6 py-3"
+          onClick={() => window.open("https://elevique.in/portfolio/", "_blank")}
+        >
+          Visit Full Portfolio
+        </Badge>
+      </div>
+
       {/* ✅ Extra Styles */}
       <style>{`
         @keyframes gradient-move {
